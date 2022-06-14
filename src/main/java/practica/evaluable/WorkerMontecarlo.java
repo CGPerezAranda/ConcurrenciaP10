@@ -12,7 +12,6 @@ public class WorkerMontecarlo extends SwingWorker<Double, Void> {
 	 */
 	
 	private static final int RADIO = 30;
-	private static final int LADO = 60;
 	private Random aleatorio;
 	
 	private int iteraciones; // numero de iteraciones del método
@@ -29,22 +28,21 @@ public class WorkerMontecarlo extends SwingWorker<Double, Void> {
 
 	@Override
 	protected Double doInBackground() {
+		double limInf = -RADIO;
+		double limSup = RADIO;
 
 		double pdentro = 0;
 
 		Double x, y;
 		for (int i = 0; i<iteraciones; i++) {
-			x = (double) aleatorio.nextInt(LADO);
-			y = (double) aleatorio.nextInt(LADO);
-			System.out.println("("+x+","+y+")");
+			x = limInf + (limSup - limInf)*aleatorio.nextDouble();
+			y = limInf + (limSup - limInf)*aleatorio.nextDouble();
 			if(Math.pow(x, 2)+Math.pow(y,2) < Math.pow(RADIO, 2)) {
 				pdentro++;
 			}
 			
 		}
-		double res  = (4 * (pdentro/((double) iteraciones)));
-		System.out.println(res);
-		
+		double res  = (4 * pdentro/((double) iteraciones));
 		
 		return res;
 	}

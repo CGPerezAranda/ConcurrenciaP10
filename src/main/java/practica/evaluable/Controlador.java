@@ -11,7 +11,7 @@ public class Controlador implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals(Panel.CALCULAR)){
+        if(e.getActionCommand().equals(Panel.COMENZAR)){
         	workerMontecarlo = new WorkerMontecarlo(panel.getIteraciones(), this.panel);
             workerMontecarlo.execute();
         }

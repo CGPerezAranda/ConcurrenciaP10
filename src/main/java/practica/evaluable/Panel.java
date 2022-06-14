@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 public class Panel extends JPanel{
-	protected static final String COMENZAR = "comenzar";
-	protected static final String CALCULAR = "calcular";
+	public static final String COMENZAR = "COMENZAR";
 
 	private JLabel label = new JLabel("Numero de iteraciones: ");
 
@@ -55,8 +54,7 @@ public class Panel extends JPanel{
 
 	
 	public void setControlador(ActionListener ctr){
-		iteraciones.addActionListener(ctr);
-		iteraciones.setActionCommand(COMENZAR);
+		boton.addActionListener(ctr);
 		//TODO: registrar ctr en los eventos del boton		
 	}
 	
