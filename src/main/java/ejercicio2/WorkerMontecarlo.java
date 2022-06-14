@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.swing.SwingWorker;
 
-public class WorkerMontecarlo extends SwingWorker<Void, Double> {
+public class WorkerMontecarlo extends SwingWorker<Double, Void> {
 	/*
 	 * Medidas del círculo y del cuadrado inscrito. r = 30
 	 */
@@ -27,36 +27,37 @@ public class WorkerMontecarlo extends SwingWorker<Void, Double> {
 	 */
 
 	@Override
-	protected Void doInBackground() {
+	protected Double doInBackground() {
 		double limInf = -RADIO;
 		double limSup = RADIO;
 
 		double pdentro = 0;
 
-		Double x, y, pi;
+		Double x, y;
 		for (int i = 0; i<iteraciones; i++) {
 			x = limInf + (limSup - limInf)*aleatorio.nextDouble();
 			y = limInf + (limSup - limInf)*aleatorio.nextDouble();
 			if(Math.pow(x, 2)+Math.pow(y,2) < Math.pow(RADIO, 2)) {
 				pdentro++;
 			}
-			pi  = (4 * pdentro/((double) iteraciones));
-			publish (pi);
-			this.setProgress((int) (100*((double)(1+i)/(double)iteraciones)));
-			//System.out.println((int) (100*((double)(1+i)/(double)iteraciones)));
 			
 		}
-		return null;
-
+		double res  = (4 * pdentro/((double) iteraciones));
+		
+		return res;
 	}
 	
 	
-	public void process(List<Double> lista)
+	@Override
+	public void done()
 	{
 		try {
 			panel.limpia1();
-			panel.escribePI1(lista.get(lista.size()-1));
+			panel.escribePI1(get());
 
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Auto-generated catch block
