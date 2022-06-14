@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio3;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +6,13 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class Panel extends JPanel{
 	public static final String COMENZAR = "COMENZAR";
-
+	public static final String CANCELAR = "cancelar";
 
 	private JLabel label = new JLabel("Numero de iteraciones: ");
 
 	private JTextField iteraciones = new JTextField(16);
 	private JButton boton = new JButton();
-
+	private JButton cancelB = new JButton();
 	
 	private JTextField pi1 = new JTextField(16); //campo de texto donde se muestra el valor aproximado por MonteCarlo
 	private JTextField pi2 = new JTextField(16); //campo de texto donde se muestra el valor aproximado por Gregory-Leibniz
@@ -26,12 +26,13 @@ public class Panel extends JPanel{
 		this.setLayout(new GridLayout(3,1,0,0));
 		
 		setBotonComenzar();
-	
+		setBotonCancelar();
+		
 		JPanel fila1=new JPanel();
 		fila1.add(label);
 		fila1.add(iteraciones);
 		fila1.add(boton);
-
+		fila1.add(cancelB);
 		
 		this.add(fila1);
 		
@@ -56,12 +57,18 @@ public class Panel extends JPanel{
 		boton.setActionCommand("COMENZAR");
 		
 	}
-
+	public void setBotonCancelar() {
+		cancelB.setText("Cancelar");
+		cancelB.setActionCommand(CANCELAR);
+		
+	}
+	
+	
 
 	
 	public void setControlador(ActionListener ctr){
 		boton.addActionListener(ctr);
-
+		cancelB.addActionListener(ctr);
 		//TODO: registrar ctr en los eventos del boton		
 	}
 	

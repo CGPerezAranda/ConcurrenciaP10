@@ -1,5 +1,4 @@
-package practica9.AmigosPublish;
-
+package practica9.amigospublish;
 import java.awt.event.*;
 
 public class Controlador implements ActionListener{

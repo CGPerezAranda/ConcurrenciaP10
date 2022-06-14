@@ -3,7 +3,6 @@ package ejercicio1;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-@SuppressWarnings("serial")
 public class Panel extends JPanel{
 	public static final String COMENZAR = "COMENZAR";
 
@@ -82,12 +81,10 @@ public class Panel extends JPanel{
 
 	public void setProgresoMonteCarlo(int p){
 		//TODO: ejercicio 2: actualiza el valor de la barra de progreso 
-		progresoMonteCarlo.setValue(p);
 	}
 	
 	public void setProgresoLeibniz(int p){
 		//TODO: ejercicio 2: actualiza el valor de la barra de progreso 
-		progresoLeibniz.setValue(p);
 	}
 
 	

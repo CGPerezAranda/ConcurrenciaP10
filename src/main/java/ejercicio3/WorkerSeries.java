@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +11,11 @@ public class WorkerSeries extends SwingWorker<Void, Double> {
 	 * Medidas del círculo y del cuadrado inscrito. r = 30
 	 */
 	
-	private static final int RADIO = 30;
-	private Random aleatorio;
-	
 	private int iteraciones; // numero de iteraciones del método
 	private Panel panel;
 	public WorkerSeries(int iteraciones, Panel panel)
 	{
 		this.iteraciones = iteraciones;
-		aleatorio = new Random();
 		this.panel=panel;
 	}
 	/*
@@ -29,10 +25,12 @@ public class WorkerSeries extends SwingWorker<Void, Double> {
 	@Override
 	protected Void doInBackground() {
 		double pi = 0;
-		for (double i = 0; i<2*iteraciones; i+=2) {
+		double i = 0;
+		while(i < 2*iteraciones && !this.isCancelled()) {
 			pi += (4/((i*2)+1)) - (4/((i*2)+3));
 			publish(pi);
 			this.setProgress((int) (100*(1.0*i*2/iteraciones)));
+			i+=2;
 			}
 		return null;
 			
@@ -47,6 +45,7 @@ public class WorkerSeries extends SwingWorker<Void, Double> {
 			panel.escribePI2(lista.get(lista.size()-1));
 
 		} catch (Exception e) {
+			panel.limpia2();
 			e.printStackTrace();
 			// TODO Auto-generated catch block
 		}

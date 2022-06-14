@@ -1,5 +1,4 @@
-package practica9.AmigosPublish;
-
+package practica9.amigospublish;
 import java.util.List;
 
 import javax.swing.SwingWorker;

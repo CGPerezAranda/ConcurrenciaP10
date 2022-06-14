@@ -1,4 +1,4 @@
-package practica9.AmigosPublish;
+package practica9.amigospublish;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

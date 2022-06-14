@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.swing.SwingWorker;
 
-public class WorkerMontecarlo extends SwingWorker<Double, Void> {
+public class WorkerMontecarlo extends SwingWorker<Void, Double> {
 	/*
 	 * Medidas del círculo y del cuadrado inscrito. r = 30
 	 */
@@ -27,38 +27,38 @@ public class WorkerMontecarlo extends SwingWorker<Double, Void> {
 	 */
 
 	@Override
-	protected Double doInBackground() {
+	protected Void doInBackground() {
 		double limInf = -RADIO;
 		double limSup = RADIO;
 
 		double pdentro = 0;
 
-		Double x, y;
+		Double x, y, pi;
 		for (int i = 0; i<iteraciones; i++) {
 			x = limInf + (limSup - limInf)*aleatorio.nextDouble();
 			y = limInf + (limSup - limInf)*aleatorio.nextDouble();
 			if(Math.pow(x, 2)+Math.pow(y,2) < Math.pow(RADIO, 2)) {
 				pdentro++;
 			}
+			pi  = (4 * pdentro/(1.0*i));
+			publish (pi);
+			this.setProgress((int) (100*(1.0*1+i)/iteraciones));
+			
 			
 		}
-		double res  = (4 * pdentro/((double) iteraciones));
-		
-		return res;
+		return null;
+
 	}
 	
 	
-	@Override
-	public void done()
+	public void process(List<Double> lista)
 	{
 		try {
 			panel.limpia1();
-			panel.escribePI1(get());
+			panel.escribePI1(lista.get(lista.size()-1));
 
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
+
 			e.printStackTrace();
 			// TODO Auto-generated catch block
 		}

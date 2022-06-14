@@ -1,5 +1,4 @@
-package practica9.AmigosPublish;
-
+package practica9.amigospublish;
 public class Amigos {
     private long a, b;
     private int pos;

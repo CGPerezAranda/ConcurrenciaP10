@@ -1,10 +1,8 @@
 package ejercicio1;
 
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
-public class Controlador implements ActionListener, PropertyChangeListener{
+public class Controlador implements ActionListener{
     
     private Panel panel;
     private WorkerMontecarlo workerMontecarlo=null;
@@ -17,18 +15,9 @@ public class Controlador implements ActionListener, PropertyChangeListener{
         if(e.getActionCommand().equals(Panel.COMENZAR)){
         	workerMontecarlo = new WorkerMontecarlo(panel.getIteraciones(), this.panel);
             workerMontecarlo.execute();
-        	workerMontecarlo.addPropertyChangeListener(this);
+        	
         	workerSeries = new WorkerSeries(panel.getIteraciones(), this.panel);
             workerSeries.execute();
-            workerSeries.addPropertyChangeListener(this);
         }
-    }
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    	if (evt.getPropertyName().equals("progress")) {
-
-    		panel.setProgresoMonteCarlo(workerMontecarlo.getProgress());
-    		panel.setProgresoLeibniz(workerSeries.getProgress());
-    	}		
     }
 }

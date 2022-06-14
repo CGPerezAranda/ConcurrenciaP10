@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio3;
 
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -21,7 +21,17 @@ public class Controlador implements ActionListener, PropertyChangeListener{
         	workerSeries = new WorkerSeries(panel.getIteraciones(), this.panel);
             workerSeries.execute();
             workerSeries.addPropertyChangeListener(this);
+        }else if(e.getActionCommand().equals(panel.CANCELAR)) {
+        	
+        	//cancela el o los worker que estén activos
+        	if(workerMontecarlo!=null) {
+        		workerMontecarlo.cancel(false);
+        	}
+        	if(workerSeries!=null) {
+        		workerSeries.cancel(false);
+        	}
         }
+      
     }
     public void propertyChange(PropertyChangeEvent evt) {
 
