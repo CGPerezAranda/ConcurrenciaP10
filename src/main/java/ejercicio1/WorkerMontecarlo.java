@@ -1,4 +1,4 @@
-package practica.evaluable;
+package ejercicio1;
 
 import java.util.ArrayList;
 import java.util.List;

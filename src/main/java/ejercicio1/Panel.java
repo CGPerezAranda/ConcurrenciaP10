@@ -1,4 +1,4 @@
-package practica.evaluable;
+package ejercicio1;
 
 import javax.swing.*;
 import java.awt.*;
